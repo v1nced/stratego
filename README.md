@@ -1,2 +1,2 @@
-# stratego.github.io
+# Stratego
 Strat maker for Rainbow SIx Siege

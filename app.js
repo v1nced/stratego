@@ -38,10 +38,12 @@ window.onload = function() {
   canvas.clear();
   });
   
-  
+
   // Добавляем возможность сохранения изображения
   document.getElementById('save-btn').addEventListener('click', function() {
   var dataURL = canvas.toDataURL();
   window.open(dataURL);
   });
-  };
+  
+
+};

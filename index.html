@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TEST</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.4.0/fabric.min.js"></script>
+  </head>
+
+  <body>
+    <div id="sidebar">
+      <ul>
+        <li><a href="#" id="pencil-btn">Карандаш</a></li>
+        <li><a href="#" id="eraser-btn">Ластик</a></li>
+        <li><input type="color" id="pencil-color" value="#000000"></li>
+        <li><input type="range" id="eraser-size" min="1" max="100" value="20"></li>
+      </ul>
+    </div>
+
+    <canvas id="myCanvas" width="1850" height="930"></canvas>
+
+    <script src="app.js"></script>
+  </body>
+</html>

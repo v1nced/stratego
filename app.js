@@ -1,49 +1,106 @@
-window.onload = function() {
-    var canvas = new fabric.Canvas('myCanvas');
-  
-    // Создаем объект карандаша
-    var pencilBrush = new fabric.PencilBrush(canvas);
-    pencilBrush.color = document.getElementById('pencil-color').value; // устанавливаем начальный цвет карандаша
-    pencilBrush.width = 5;
-  
-    // Создаем объект ластика
-    var eraserBrush = new fabric.CircleBrush(canvas);
-    eraserBrush.width = parseInt(document.getElementById('eraser-size').value, 10);
-    eraserBrush.globalCompositeOperation = 'destination-out';
-  
-    // Добавляем кнопку для выбора карандаша
-    document.getElementById('pencil-btn').addEventListener('click', function() {
-      canvas.freeDrawingBrush = pencilBrush;
-      canvas.isDrawingMode = true;
-    });
-  
-    // Добавляем кнопку для выбора ластика
-    document.getElementById('eraser-btn').addEventListener('click', function() {
-      canvas.freeDrawingBrush = eraserBrush;
-      canvas.isDrawingMode = true;
-    });
-  
-    // Добавляем возможность выбора цвета каранда
-  document.getElementById('pencil-color').addEventListener('change', function() {
-  pencilBrush.color = this.value;
-  });
-  
-  // Добавляем возможность изменения размера ластика
-  document.getElementById('eraser-size').addEventListener('change', function() {
-  eraserBrush.width = parseInt(this.value, 10);
-  });
-  
-  // Добавляем кнопку для очистки холста
-  document.getElementById('clear-btn').addEventListener('click', function() {
-  canvas.clear();
-  });
-  
 
-  // Добавляем возможность сохранения изображения
-  document.getElementById('save-btn').addEventListener('click', function() {
-  var dataURL = canvas.toDataURL();
-  window.open(dataURL);
-  });
-  
 
-};
+const initCanvas = (id) => {
+    return new fabric.Canvas(id, {
+        width: 1146,
+        height: 500,
+        selection: false,
+    });
+}
+
+const setBackground = (url, canvas)=>{
+    fabric.Image.fromURL(url ,(img)=>{
+        canvas.backgroundImage = img
+        canvas.requestRenderAll()
+    })
+}
+
+
+const canvas = initCanvas("canvas")
+
+setBackground('./map-border.png', canvas)
+
+let mousePressed = false;
+
+let currentMode;
+
+let brushSize = document.getElementById("eraser-size")
+let brushColor = document.getElementById("pencil-color")
+
+
+function changeBrush(){
+
+
+
+    brushColor.addEventListener('change', (event)=>{
+        canvas.freeDrawingBrush.color=event.target.value
+    })
+    brushSize.addEventListener('change', (event)=>{
+        canvas.freeDrawingBrush.width=event.target.value
+    })
+}
+
+
+changeBrush()
+
+console.log(brushColor)
+console.log(brushSize)
+
+const toggleMode = (mode)=>{
+    if(currentMode === mode){
+        currentMode = ""
+        console.log(currentMode)
+    } else{
+        currentMode = mode
+        console.log(currentMode)
+        canvas.requestRenderAll()
+    }
+}
+
+const modes = {
+    pan:"pan",
+    draw:"draw"
+}
+
+canvas.on('mouse:move', (event)=>{
+    if(mousePressed && currentMode === modes.pan) {
+        const mEvent = event.e
+        const delta = new fabric.Point(mEvent.movementX, mEvent.movementY)
+        canvas.relativePan(delta)
+        console.log(event)
+        canvas.setCursor('grabbing')
+    } else if(mousePressed && currentMode === modes.draw){
+        canvas.isDrawingMode = true
+        
+        
+        /* canvas.requestRenderAll() */
+    }   else if(currentMode != modes.draw){ 
+        canvas.isDrawingMode = false
+    }
+
+})
+
+canvas.on('mouse:down', (event)=>{
+    mousePressed = true;
+    if(currentMode === modes.pan){
+        canvas.setCursor('grabbing')
+    }
+    
+})
+
+
+canvas.on('mouse:up', (event)=>{
+    mousePressed = false;
+})
+
+
+canvas.on('mouse:wheel', function(opt) {
+    var delta = opt.e.deltaY;
+    var zoom = canvas.getZoom();
+    zoom *= 0.999 ** delta;
+    if (zoom > 20) zoom = 20;
+    if (zoom < 0.01) zoom = 0.01;
+    canvas.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, zoom);
+    opt.e.preventDefault();
+    opt.e.stopPropagation();
+  });

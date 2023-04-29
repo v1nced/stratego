@@ -1,26 +1,61 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>TEST</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.4.0/fabric.min.js"></script>
-  </head>
+	<head>
+		<title>TEST</title>
+		<link rel="stylesheet" href="./style.css" />
+	</head>
 
-  <body>
-    <div id="sidebar">
-      <ul>
-        <li><a href="#" id="pencil-btn">Карандаш</a></li>
-        <li><a href="#" id="eraser-btn">Ластик</a></li>
-        <li><input type="color" id="pencil-color" value="#000000"></li>
-        <li><input type="range" id="eraser-size" min="1" max="100" value="20"></li>
-      </ul>
-    </div>
+	<body>
+		<div class="toolbar">
+			<h1>BORDER</h1>
+			<div class="header">
+				<button>Basement</button>
+				<button onclick="">First Floor</button>
+				<button>Second Floor</button>
+			</div>
+		</div>
+		<div class="workspace">
+			<div class="sidebar__left">
+				<ul></ul>
 
-    <canvas id="myCanvas" width="1850" height="930"></canvas>
+				<ul class="sidebar__attacker">
+					Attacker
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+					<li>5</li>
+				</ul>
+				<ul class="sidebar__defender">
+					Defender
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+					<li>5</li>
+				</ul>
+			</div>
 
-    <script src="app.js"></script>
-  </body>
-  
-  
-  
-  </html>
+			<canvas id="canvas">
+			</canvas>
+
+			<div class="sidebar__right">
+				<ul>
+					<li><button onclick="toggleMode(modes.pan)">Pan</button></li>
+					<li><button onclick="toggleMode(modes.draw)">Draw</button></li>
+					<li><a href="#" id="pencil-btn">Карандаш</a></li>
+					<li><a href="#" id="eraser-btn">Ластик</a></li>
+					<li><input type="color" id="pencil-color" value="#ffffff" /></li>
+					<li>
+						<input type="range" id="eraser-size" min="1" max="100" value="20" />
+					</li>
+				</ul>
+			</div>
+		</div>
+
+
+			
+		<script src="./fabric.min.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>

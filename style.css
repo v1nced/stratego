@@ -1,60 +1,136 @@
+/* Указываем box sizing */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* Убираем внутренние отступы */
+ul[class],
+ol[class] {
+	padding: 0;
+}
+
+/* Убираем внешние отступы */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+	margin: 0;
+}
+
+/* Выставляем основные настройки по-умолчанию для body */
 body {
-    background-image: url('1.png');
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  
-  #sidebar {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 80px;
-    height: 100%;
-    background-color: #f2f2f2;
-    z-index: 999;
-  }
-  
-  #sidebar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  #sidebar li {
-    margin: 10px 0;
-    text-align: center;
-  }
-  
-  #sidebar input {
-    width: 60px;
-  }
-  
-  canvas {
-    position: absolute;
-    top: 0;
-    left: 80px;
-  }
-  
-  .tool {
-    padding: 10px;
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin: 10px;
-  }
-  
-  #pencil-color-picker {
-    margin: 10px;
-  }
-  
-  #eraser-size-slider {
-  
-    margin: 10px;
-  
-  
-  }
-  
+	min-height: 100vh;
+	scroll-behavior: smooth;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+}
+
+/* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
+ul[class],
+li[class],        
+ol[class] {
+	list-style: none;
+}
+
+/* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
+a:not([class]) {
+	text-decoration-skip-ink: auto;
+}
+
+/* Упрощаем работу с изображениями */
+img {
+	max-width: 100%;
+	display: block;
+}
+
+/* Указываем понятную периодичность в потоке данных у article*/
+article > * + * {
+	margin-top: 1em;
+}
+
+/* Наследуем шрифты для инпутов и кнопок */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+li{
+	list-style: none;
+}
+
+.toolbar {
+	background-color: #bbbbbbf5;
+	padding: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.toolbar h1 {
+	color: white;
+}
+
+.header button {
+	margin-right: 10px;
+	padding: 5px 10px;
+	background-color: blueviolet;
+	color: white;
+	border: none;
+
+	cursor: pointer;
+}
+.toolbar button:hover {
+	background-color: rgb(98, 31, 160);
+}
+
+.workspace {
+	height: calc(100vh - 68px);
+	width: 100%;
+	display: flex;
+}
+
+.sidebar__left {
+	width: 195px;
+	height: calc(100vh - 68px);
+	background-color: #bbbbbbf5;
+	padding: 10px;
+}
+
+.sidebar__right {
+	width: 195px;
+	height: calc(100vh - 68px);
+	background-color: #bbbbbbf5;
+	padding: 10px;
+	border: 0px;
+}
+
+.sidebar ul li {
+	display: block;
+	padding: 2px;
+	text-decoration: none;
+	color: #ffffff;
+}
+.sidebar a:hover {
+	background-color: #ddd;
+}
+
+.canvas {
+	flex-grow: 1;
+}
+.canvas img {
+	height: calc(100vh - 68px);
+}

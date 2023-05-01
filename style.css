@@ -39,7 +39,7 @@ body {
 
 /* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
 ul[class],
-li[class],        
+li[class],
 ol[class] {
 	list-style: none;
 }
@@ -68,7 +68,7 @@ select {
 	font: inherit;
 }
 
-li{
+li {
 	list-style: none;
 }
 
@@ -136,4 +136,19 @@ li{
 }
 .canvas img {
 	height: calc(100vh - 68px);
+}
+
+.sidebar__attacker {
+	display: flex;
+	flex-direction: column;
+}
+
+.sidebar__attacker li {
+	margin: 10px;
+}
+
+.sidebar__attacker img {
+	background-color: wheat;
+
+	cursor: pointer;
 }

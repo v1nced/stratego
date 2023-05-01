@@ -51,16 +51,11 @@ function changeBrush() {
 
 changeBrush()
 
-/* console.log(brushColor)
-console.log(brushSize) */
-
 const toggleMode = mode => {
 	if (currentMode === mode) {
 		currentMode = ''
-		console.log(currentMode)
 	} else {
 		currentMode = mode
-		console.log(currentMode)
 		canvas.requestRenderAll()
 	}
 }
@@ -75,7 +70,6 @@ canvas.on('mouse:move', event => {
 		const mEvent = event.e
 		const delta = new fabric.Point(mEvent.movementX, mEvent.movementY)
 		canvas.relativePan(delta)
-		console.log(event)
 		canvas.setCursor('grabbing')
 	} else if (mousePressed && currentMode === modes.draw) {
 		canvas.isDrawingMode = true
@@ -106,7 +100,6 @@ canvas.on('mouse:down', event => {
 canvas.on('mouse:up', event => {
 	mousePressed = false
 	middleClick = false
-	console.log(canvas.item(0))
 })
 
 canvas.on('mouse:wheel', function (opt) {
@@ -124,7 +117,6 @@ window.addEventListener(
 	'resize',
 	function (event) {
 		width = document.querySelector('.workspace').offsetWidth
-		console.log(width)
 		canvas.setWidth(width - 195)
 		canvas.renderAll()
 		setBackground('./map-border.png', canvas)
@@ -138,3 +130,18 @@ const centerPoint = new fabric.Point(center.left, center.top)
 
 canvas.zoomToPoint(centerPoint, 2)
 canvas.requestRenderAll()
+
+const opIcon = document.querySelectorAll('#opicon')
+
+function addOpIcon() {
+	opIcon.forEach(element => {
+		element.addEventListener('click', () => {
+			fabric.Image.fromURL(element.getAttribute('src'), img => {
+				canvas.add(img)
+				canvas.centerObject(img)
+			})
+		})
+	})
+}
+
+addOpIcon()

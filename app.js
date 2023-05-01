@@ -1,19 +1,32 @@
 
 
+let width = document.querySelector('.workspace').offsetWidth
+let height = document.querySelector('.workspace').offsetHeight
 const initCanvas = (id) => {
     return new fabric.Canvas(id, {
-        width: 1146,
-        height: 500,
+        width: width,
+        height: height,
         selection: false,
+        
     });
 }
 
 const setBackground = (url, canvas)=>{
     fabric.Image.fromURL(url ,(img)=>{
+      /*   canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
+            scaleX: canvas.width / img.width,
+            scaleY: canvas.height / img.height 
+        }); */
         canvas.backgroundImage = img
+        canvas.backgroundImage.scaleToWidth(width);
+        canvas.backgroundImage.scaleToHeight(height);
+        canvas.setDimensions({width: width-17, height: height-5});
         canvas.requestRenderAll()
     })
 }
+
+
+
 
 
 const canvas = initCanvas("canvas")
@@ -104,3 +117,18 @@ canvas.on('mouse:wheel', function(opt) {
     opt.e.preventDefault();
     opt.e.stopPropagation();
   });
+
+  window.addEventListener('resize', function(event) {
+    width = document.querySelector('.workspace').offsetWidth
+    console.log(width)
+    canvas.setWidth(width-195);
+    canvas.renderAll()
+    setBackground('./map-border.png', canvas)
+}, true);
+
+const center = canvas.getCenter();
+
+const centerPoint = new fabric.Point(center.left, center.top);
+
+canvas.zoomToPoint(centerPoint, 2);
+canvas.requestRenderAll();

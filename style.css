@@ -101,10 +101,11 @@ li{
 	height: calc(100vh - 68px);
 	width: 100%;
 	display: flex;
+	position: relative;
 }
 
 .sidebar__left {
-	width: 195px;
+	width: 100px;
 	height: calc(100vh - 68px);
 	background-color: #bbbbbbf5;
 	padding: 10px;
@@ -116,6 +117,8 @@ li{
 	background-color: #bbbbbbf5;
 	padding: 10px;
 	border: 0px;
+	position: absolute;
+	right: 0;
 }
 
 .sidebar ul li {

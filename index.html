@@ -3,6 +3,9 @@
 	<head>
 		<title>TEST</title>
 		<link rel="stylesheet" href="./style.css" />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	</head>
 
 	<body>
@@ -10,7 +13,7 @@
 			<h1>BORDER</h1>
 			<div class="header">
 				<button>Basement</button>
-				<button onclick="">First Floor</button>
+				<button>First Floor</button>
 				<button>Second Floor</button>
 			</div>
 		</div>
@@ -37,26 +40,23 @@
 			</div> -->
 
 			<div class="fabric-canvas-wrapper" id="3">
-				<canvas id="canvas">
-				</canvas>
-			</div> 
+				<canvas id="canvas"> </canvas>
+			</div>
 
 			<div class="sidebar__right">
 				<ul>
-					<li><button onclick="toggleMode(modes.pan)">Pan</button></li>
+					<!-- <li><button onclick="toggleMode(modes.pan)">Pan</button></li> -->
 					<li><button onclick="toggleMode(modes.draw)">Draw</button></li>
-					<li><a href="#" id="pencil-btn">Карандаш</a></li>
-					<li><a href="#" id="eraser-btn">Ластик</a></li>
-					<li><input type="color" id="pencil-color" value="#ffffff" /></li>
+					<!-- <li><a href="#" id="pencil-btn">Карандаш</a></li>
+					<li><a href="#" id="eraser-btn">Ластик</a></li> -->
+					<!-- <li><input type="color" id="pencil-color" value="#ffffff" /></li>
 					<li>
 						<input type="range" id="eraser-size" min="1" max="100" value="20" />
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>
 
-
-			
 		<script src="./fabric.min.js"></script>
 		<script src="app.js"></script>
 	</body>

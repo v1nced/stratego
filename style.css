@@ -148,7 +148,32 @@ li {
 }
 
 .sidebar__attacker img {
-	background-color: wheat;
-
 	cursor: pointer;
 }
+
+.red {
+	background-color: red;
+  }
+  
+  .orange {
+	background-color: orangered;
+  }
+
+  .green {
+	background-color: green;
+  }
+
+  .blue {
+	background-color: blue;
+  }
+
+  .yellow {
+	background-color: yellow;
+  }
+
+
+
+
+
+
+

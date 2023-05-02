@@ -124,24 +124,33 @@ window.addEventListener(
 	true
 )
 
-const center = canvas.getCenter()
 
-const centerPoint = new fabric.Point(center.left, center.top)
+const center = canvas.getCenter();
+const centerPoint = new fabric.Point(center.left, center.top);
 
-canvas.zoomToPoint(centerPoint, 2)
-canvas.requestRenderAll()
+canvas.zoomToPoint(centerPoint, 2);
+canvas.requestRenderAll();
 
-const opIcon = document.querySelectorAll('#opicon')
+const opIcons = document.querySelectorAll('#opicon');
+const addedIcons = {};
 
 function addOpIcon() {
-	opIcon.forEach(element => {
-		element.addEventListener('click', () => {
-			fabric.Image.fromURL(element.getAttribute('src'), img => {
-				canvas.add(img)
-				canvas.centerObject(img)
-			})
-		})
-	})
+	opIcons.forEach(icon => {
+		icon.addEventListener('click', () => {
+			const src = icon.getAttribute('src');
+			const color = icon.getAttribute('data-color'); // получаем цвет
+			if (!addedIcons[src]) {
+				fabric.Image.fromURL(src, img => {
+					img.set({
+										});
+					canvas.add(img);
+					canvas.centerObject(img);
+				});
+				addedIcons[src] = true;
+			}
+		});
+	});
 }
 
-addOpIcon()
+
+addOpIcon();

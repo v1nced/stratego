@@ -2,10 +2,11 @@
 <html>
 	<head>
 		<title>TEST</title>
-		<link rel="stylesheet" href="./style.css" />
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" href="./style.css">
+	
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	</head>
 
 	<body>
@@ -17,39 +18,27 @@
 				<button>Second Floor</button>
 			</div>
 		</div>
+
 		<div class="workspace" id="2">
 			<div class="fabric-canvas-wrapper" id="3">
-				<canvas id="canvas"> </canvas>
+				<canvas id="canvas" alt="Canvas"></canvas>
 			</div>
 
 			<div class="sidebar__right">
 				<ul>
-					<!-- <li><button onclick="toggleMode(modes.pan)">Pan</button></li> -->
 					<li><button onclick="toggleMode(modes.draw)">Draw</button></li>
-					<!-- <li><a href="#" id="pencil-btn">Карандаш</a></li>
-					<li><a href="#" id="eraser-btn">Ластик</a></li> -->
-					<!-- <li><input type="color" id="pencil-color" value="#ffffff" /></li>
-					<li>
-						<input type="range" id="eraser-size" min="1" max="100" value="20" />
-					</li> -->
 					<div class="operators">
 						<ul></ul>
+
 						<ul class="sidebar__attacker">
-							<li><img id="opicon" src="Recruit_Blue_Icon.png" alt="#" /></li>
-							<li><img id="opicon" src="Recruit_Green_Icon.png" alt="#" /></li>
-							<li><img id="opicon" src="Recruit_Orange_Icon.png" alt="#" /></li>
-							<li>
-								<img
-									id="opicon"
-									src="Recruit_Red_Icon.png"
-									alt="#"
-									width="75px"
-								/>
-							</li>
-							<li><img id="opicon" src="ace.png" alt="#" width="75px" /></li>
+							<li><img id="opicon" data-color="blue" class="blue" src="Recruit_Blue_Icon.png" alt="Blue Icon" width="75px"></li>
+							<li><img id="opicon" data-color="green" class="green" src="Recruit_Green_Icon.png" alt="Green Icon" width="75px"></li>
+							<li><img id="opicon" data-color="orange" class="orange" src="Recruit_Orange_Icon.png" alt="Orange Icon" width="75px"></li>
+							<li><img id="opicon" data-color="red" class="red" src="Recruit_Red_Icon.png" alt="Red Icon" width="75px"></li>
+							<li><img id="opicon" data-color="yellow" class="yellow" src="Recruit_Yellow_Icon.png" alt="Yellow Icon" width="75px"></li>
 						</ul>
 						<ul class="sidebar__defender">
-							Defender
+							<li>Defender</li>
 							<li>1</li>
 							<li>2</li>
 							<li>3</li>
@@ -60,7 +49,6 @@
 				</ul>
 			</div>
 		</div>
-
 		<script src="./fabric.min.js"></script>
 		<script src="app.js"></script>
 	</body>

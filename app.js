@@ -228,3 +228,33 @@ function activeCanvas(){
 }
 
 activeCanvas()
+
+function clearCanvas(){
+
+	document.querySelector('#clear').addEventListener('click', ()=>{
+		if(isActive[0]){
+			canvas.getObjects().forEach((element)=>{
+				canvas.remove(element)
+			})
+			
+		}
+		if(isActive[1]){
+			canvas1.getObjects().forEach((element)=>{
+				canvas1.remove(element)
+			})
+		}
+		if(isActive[2]){
+			canvas2.getObjects().forEach((element)=>{
+				canvas2.remove(element)
+			})
+		}
+
+		
+		
+		
+	})
+	
+	
+}
+
+clearCanvas()

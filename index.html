@@ -12,26 +12,21 @@
 		<div class="toolbar">
 			<h1>BORDER</h1>
 			<div class="header">
-				<button>Basement</button>
-				<button>First Floor</button>
-				<button>Second Floor</button>
+				<button class="layer">Basement</button>
+				<button class="layer">First Floor</button>
+				<button class="layer">Second Floor</button>
 			</div>
 		</div>
 		<div class="workspace" id="2">
 			<div class="fabric-canvas-wrapper" id="3">
-				<canvas id="canvas"> </canvas>
+				<canvas id="canvas"></canvas>
+				<canvas id="canvas1"></canvas>
+				<canvas id="canvas2"></canvas>
 			</div>
 
 			<div class="sidebar__right">
 				<ul>
-					<!-- <li><button onclick="toggleMode(modes.pan)">Pan</button></li> -->
 					<li><button onclick="toggleMode(modes.draw)">Draw</button></li>
-					<!-- <li><a href="#" id="pencil-btn">Карандаш</a></li>
-					<li><a href="#" id="eraser-btn">Ластик</a></li> -->
-					<!-- <li><input type="color" id="pencil-color" value="#ffffff" /></li>
-					<li>
-						<input type="range" id="eraser-size" min="1" max="100" value="20" />
-					</li> -->
 					<div class="operators">
 						<ul></ul>
 						<ul class="sidebar__attacker">
@@ -47,14 +42,6 @@
 								/>
 							</li>
 							<li><img id="opicon" src="ace.png" alt="#" width="75px" /></li>
-						</ul>
-						<ul class="sidebar__defender">
-							Defender
-							<li>1</li>
-							<li>2</li>
-							<li>3</li>
-							<li>4</li>
-							<li>5</li>
 						</ul>
 					</div>
 				</ul>

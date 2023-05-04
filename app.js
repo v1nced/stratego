@@ -8,6 +8,8 @@ const initCanvas = id => {
 		fireRightClick: true,
 		fireMiddleClick: true,
 		stopContextMenu: true,
+		perPixelTargetFind: true,
+		hasControls :false,
 	})
 }
 
@@ -48,6 +50,8 @@ let brushColor = document.getElementById('pencil-color') */
 function changeBrush(canvas) {
 	canvas.freeDrawingBrush.color = '#fcba03'
 	canvas.freeDrawingBrush.width = 7.5
+	canvas.hasBorders = false
+	
 
 	/* brushColor.addEventListener('change', event => {
 		canvas.freeDrawingBrush.color = event.target.value
@@ -113,6 +117,10 @@ function mouseCanvas(canvas){
 	canvas.on('mouse:up', event => {
 		mousePressed = false
 		middleClick = false
+		canvas.forEachObject(function(o){ o.hasBorders = o.hasControls = false;
+			 
+		});
+		canvas.renderAll();
 	})
 
 	canvas.on('mouse:wheel', function (opt) {
@@ -190,6 +198,7 @@ function addOpIcon(canvas, element) {
 			fabric.Image.fromURL(element.getAttribute('src'), img => {
 				canvas.add(img)
 				canvas.centerObject(img)
+				img.hasBorders=img.hasControls=false
 				canvas.requestRenderAll()
 			})
 		
@@ -262,3 +271,41 @@ function clearCanvas(){
 }
 
 clearCanvas()
+
+
+
+function removeDrawObj(canvas){
+
+	
+
+	canvas.on('mouse:up', () =>{
+		canvas.forEachObject((e)=>{
+			e.on('mouseover', ()=>{
+			
+				canvas.setActiveObject(e)
+			})
+		})
+	})
+	canvas.on("mouse:down", event =>{
+
+		
+
+
+		if(event.button === 3){
+			console.log("click")
+			
+			if(canvas.getActiveObject() && canvas.getActiveObject().path){
+				//console.log(canvas.getActiveObject().path)
+				canvas.remove(canvas.getActiveObject())
+			}
+			
+		}
+		
+	})
+}
+
+removeDrawObj(canvas)
+removeDrawObj(canvas1)
+removeDrawObj(canvas2)
+
+canvas.getContext('2d', { willReadFrequently: true });

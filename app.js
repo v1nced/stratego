@@ -2,8 +2,8 @@ let width = document.querySelector('.workspace').offsetWidth
 let height = document.querySelector('.workspace').offsetHeight
 const initCanvas = id => {
 	return new fabric.Canvas(id, {
-		width: width,
-		height: height,
+		/* width: 900,
+		height: 500, */
 		selection: false,
 		fireRightClick: true,
 		fireMiddleClick: true,
@@ -11,16 +11,20 @@ const initCanvas = id => {
 	})
 }
 
+
+
+
 const setBackground = (url, canvas) => {
 	fabric.Image.fromURL(url, img => {
-		/*   canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
+		  canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
             scaleX: canvas.width / img.width,
             scaleY: canvas.height / img.height 
-        }); */
+        });
 		canvas.backgroundImage = img
 		canvas.backgroundImage.scaleToWidth(width)
 		canvas.backgroundImage.scaleToHeight(height)
-		canvas.setDimensions({ width: width - 17, height: height - 5 })
+		canvas.setDimensions({ width: width-195, height: height })
+		canvas.backgroundImage.center()
 		canvas.requestRenderAll()
 	})
 }
@@ -131,8 +135,8 @@ mouseCanvas(canvas)
 mouseCanvas(canvas1)
 mouseCanvas(canvas2)
 
-
-/* window.addEventListener(
+/* 
+window.addEventListener(
 	'resize',
 	function (event) {
 		width = document.querySelector('.workspace').offsetWidth
@@ -141,8 +145,8 @@ mouseCanvas(canvas2)
 		setBackground('./map-border.png', canvas)
 	},
 	true
-)
- */
+) */
+
 const center = canvas.getCenter()
 
 const centerPoint = new fabric.Point(center.left, center.top)

@@ -152,3 +152,8 @@ li {
 
 	cursor: pointer;
 }
+
+body{
+	overflow: hidden
+}
+

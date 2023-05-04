@@ -50,10 +50,10 @@ a:not([class]) {
 }
 
 /* Упрощаем работу с изображениями */
-img {
+/* img {
 	max-width: 100%;
 	display: block;
-}
+} */
 
 /* Указываем понятную периодичность в потоке данных у article*/
 article > * + * {
@@ -132,24 +132,23 @@ li {
 }
 
 .canvas {
-	flex-grow: 1;
+	/* //flex-grow: 1; */
 }
-.canvas img {
+/* .canvas img {
 	height: calc(100vh - 68px);
-}
+} */
 
 .sidebar__attacker {
-	display: flex;
-	flex-direction: column;
+/* 	display: flex;
+	flex-direction: column; */
 }
 
-.sidebar__attacker li {
+.sidebar__attacker img {
 	margin: 10px;
 }
 
 .sidebar__attacker img {
 	background-color: wheat;
-
 	cursor: pointer;
 }
 
@@ -157,3 +156,31 @@ body{
 	overflow: hidden
 }
 
+
+#canvas-container {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    box-shadow: 0 0 5px 1px black;
+    margin: 10px auto;
+    border: 5px solid transparent;
+}
+
+#images img.img_dragging {
+    opacity: 0.4;
+}
+/* 
+Styles below based on  http://www.html5rocks.com/en/tutorials/dnd/basics/ 
+*/
+
+/* Prevent the text contents of draggable elements from being selectable. */
+[draggable] {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    /* Required to make elements draggable in old WebKit */
+    -khtml-user-drag: element;
+    -webkit-user-drag: element;
+    cursor: move;
+}

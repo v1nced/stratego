@@ -10,6 +10,7 @@ const initCanvas = id => {
 		stopContextMenu: true,
 		perPixelTargetFind: true,
 		hasControls :false,
+		backgroundColor : "#a8a8a8"
 	})
 }
 
@@ -35,9 +36,9 @@ const canvas = initCanvas('canvas')
 const canvas1 = initCanvas('canvas1')
 const canvas2 = initCanvas('canvas2')
 
-setBackground('./map-border.png', canvas)
-setBackground('./map-border1.png', canvas1)
-setBackground('./map-border2.png', canvas2)
+setBackground('./images/map-border.png', canvas)
+setBackground('./images/map-border1.png', canvas1)
+setBackground('./images/map-border2.png', canvas2)
 
 let mousePressed = false
 let middleClick = false
@@ -311,7 +312,7 @@ removeDrawObj(canvas2)
 canvas.getContext('2d', { willReadFrequently: true });
 
 
-function dragDrop(canvas){
+function dragDrop(canvas,num){
 
 /* 
 NOTE: the start and end handlers are events for the <img> elements; the rest are bound to 
@@ -384,13 +385,16 @@ function handleDragEnd(e) {
         img.addEventListener('dragend', handleDragEnd, false);
     });
     // Bind the event listeners for the canvas
-    var canvasContainer = document.querySelector('.canvas-container');
-    canvasContainer.addEventListener('dragenter', handleDragEnter, false);
-    canvasContainer.addEventListener('dragover', handleDragOver, false);
-    canvasContainer.addEventListener('dragleave', handleDragLeave, false);
-    canvasContainer.addEventListener('drop', handleDrop, false);
+    var canvasContainer = document.querySelectorAll('.canvas-container');
+
+		canvasContainer[num].addEventListener('dragenter', handleDragEnter, false);
+		canvasContainer[num].addEventListener('dragover', handleDragOver, false);
+		canvasContainer[num].addEventListener('dragleave', handleDragLeave, false);
+		canvasContainer[num].addEventListener('drop', handleDrop, false);
 
  
 }
 
-dragDrop(canvas)
+dragDrop(canvas,0)
+dragDrop(canvas1,1)
+dragDrop(canvas2,2)

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>TEST</title>
-		<link rel="stylesheet" href="./styles/style.css" />
+		<link rel="stylesheet" href="./styles/styles.css" />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -10,34 +10,32 @@
 
 	<body>
 		<div class="header">
-			<div class="floors">
+			<div class="header__floors">
 				<button class="layer">First Floor</button>
 				<button class="layer">Second Floor</button>
 				<button class="layer">Roof</button>
 			</div>
+			<div class="header__tools">
+				<button class="layer tool" onclick="toggleMode(modes.draw)">Draw</button>
+				<button class="layer tool" id="clear">Clear</button>
+			</div>
 		</div>
+
 		<div class="workspace" id="2">
-			<div class="fabric-canvas-wrapper" id="3">
+			<div class="workspace__canvas-wrapper" id="3">
 				<canvas id="canvas"></canvas>
 				<canvas id="canvas1"></canvas>
 				<canvas id="canvas2"></canvas>
 			</div>
 
-			<div class="sidebar__right">
-				<ul>
-					<li><button onclick="toggleMode(modes.draw)">Draw</button></li>
-					<button id="clear">Clear</button>
-					<div class="operators">
-						
-						<div class="sidebar__attacker" id="images">
+			<div class="workspace__sidebar">	
+						<div class="workspace__sidebar-select" id="images">
 							<img draggable="true" id="opicon" src="./images/icon/Recruit_Blue_Icon.png" alt="#" />
 							<img draggable="true" id="opicon" src="./images/icon/Recruit_Green_Icon.png" alt="#" />
 							<img draggable="true" id="opicon" src="./images/icon/Recruit_Orange_Icon.png" alt="#" />
 							<img draggable="true" id="opicon" src="./images/icon/Recruit_Red_Icon.png" alt="#" width="75px"/>
 							<img draggable="true" id="opicon" src="./images/icon/ace.png" alt="#" width="75px" />
 						</div>
-					</div>
-				</ul>
 			</div>
 		</div>
 

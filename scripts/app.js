@@ -11,6 +11,7 @@ const initCanvas = id => {
 		perPixelTargetFind: true,
 		hasControls :false,
 		backgroundColor : "#a8a8a8"
+
 	})
 }
 
@@ -26,7 +27,7 @@ const setBackground = (url, canvas) => {
 		canvas.backgroundImage = img
 		canvas.backgroundImage.scaleToWidth(width)
 		canvas.backgroundImage.scaleToHeight(height)
-		canvas.setDimensions({ width: width-195, height: height })
+		canvas.setDimensions({ width: width-document.querySelector(".workspace__sidebar").offsetWidth, height: height-document.querySelector('.header').offsetHeight })
 		canvas.backgroundImage.center()
 		canvas.requestRenderAll()
 	})

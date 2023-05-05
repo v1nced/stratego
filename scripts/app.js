@@ -356,8 +356,8 @@ function handleDrop(e) {
     console.log('event: ', e);
 
     var newImage = new fabric.Image(img, {
-        width: img.width,
-        height: img.height,
+        /* width: img.width,
+        height: img.height, */
         // Set the center of the new object based on the event coordinates relative
         // to the canvas container.
         left: e.layerX,
@@ -380,6 +380,7 @@ function handleDragEnd(e) {
 
     // Bind the event listeners for the image elements
     var images = document.querySelectorAll('#images img');
+
     [].forEach.call(images, function (img) {
         img.addEventListener('dragstart', handleDragStart, false);
         img.addEventListener('dragend', handleDragEnd, false);

@@ -1,5 +1,9 @@
+//Ширина и высота контейнера workspace
 let width = document.querySelector('.workspace').offsetWidth
 let height = document.querySelector('.workspace').offsetHeight
+
+
+// Функция создание канваса. как перемнная принимает id из html
 const initCanvas = id => {
 	return new fabric.Canvas(id, {
 		/* width: 900,
@@ -16,7 +20,7 @@ const initCanvas = id => {
 }
 
 
-
+// Выставление фонового изображения
 
 const setBackground = (url, canvas) => {
 	fabric.Image.fromURL(url, img => {
@@ -33,22 +37,33 @@ const setBackground = (url, canvas) => {
 	})
 }
 
+
+// Вызов функиции канваса
+
 const canvas = initCanvas('canvas')
 const canvas1 = initCanvas('canvas1')
 const canvas2 = initCanvas('canvas2')
+
+
+// Фон для канваса
 
 setBackground('./images/map-border.png', canvas)
 setBackground('./images/map-border1.png', canvas1)
 setBackground('./images/map-border2.png', canvas2)
 
+// переменные для отслеживания состояния мыши
+
 let mousePressed = false
 let middleClick = false
 
+
+// дефолт режим(инструмент) при загрузке страницы
 let currentMode = 'pan'
 
 /* let brushSize = document.getElementById('eraser-size')
 let brushColor = document.getElementById('pencil-color') */
 
+// Функция для изменения характеристики кисти
 function changeBrush(canvas) {
 	canvas.freeDrawingBrush.color = '#fcba03'
 	canvas.freeDrawingBrush.width = 7.5
@@ -63,33 +78,46 @@ function changeBrush(canvas) {
 	}) */
 }
 
+
+
+// Вызов функции изменеия кисти
 changeBrush(canvas)
 changeBrush(canvas1)
 changeBrush(canvas2)
 
+
+
+// Функция смены режима(инструмента)
 const toggleMode = mode => {
 	if (currentMode === mode) {
 		currentMode = ''
+		document.getElementById('draw').classList.remove('btn-toggle')
 	} else {
+		document.getElementById('draw').classList.add('btn-toggle')
 		currentMode = mode
 		canvas.requestRenderAll()
 	}
 }
 
+
+// Объект с режимами(инструментами)
 const modes = {
 	pan: 'pan',
 	draw: 'draw',
 }
 
 
+// Функция с работой мышкой
 function mouseCanvas(canvas){
+
+	// При движении отслеживает зажатую кнопку и текущий режим 
 	canvas.on('mouse:move', event => {
 		if (middleClick) {
 			const mEvent = event.e
 			const delta = new fabric.Point(mEvent.movementX, mEvent.movementY)
 			canvas.relativePan(delta)
 			canvas.setCursor('grabbing')
-		} else if (mousePressed && currentMode === modes.draw) {
+		} else if (currentMode === modes.draw) {
 			canvas.isDrawingMode = true
 	
 			/* canvas.requestRenderAll() */
@@ -100,14 +128,17 @@ function mouseCanvas(canvas){
 	})
 
 
+
+	// При клике провеяет кнопку и режим
 	canvas.on('mouse:down', event => {
+		// Включение режима free draw
 		if (event.button === 1 && currentMode === modes.draw) {
 			mousePressed = true
 			if (currentMode === modes.draw) {
-				canvas.setCursor('grabbing')
+			//	canvas.setCursor('grabbing')
 			}
 		}
-	
+		// Включает режим pan
 		if (event.button === 2) {
 			middleClick = true
 			if (currentMode === modes.pan) {
@@ -115,7 +146,7 @@ function mouseCanvas(canvas){
 			}
 		}
 	})
-	
+	// При отжатия кнопки выключается режим pan
 	canvas.on('mouse:up', event => {
 		mousePressed = false
 		middleClick = false
@@ -125,6 +156,7 @@ function mouseCanvas(canvas){
 		canvas.renderAll();
 	})
 
+	// Зум канваса
 	canvas.on('mouse:wheel', function (opt) {
 		var delta = opt.e.deltaY
 		var zoom = canvas.getZoom()
@@ -140,7 +172,7 @@ function mouseCanvas(canvas){
 
 }
 
-
+// Вызов функции для хендлинга мыши
 mouseCanvas(canvas)
 mouseCanvas(canvas1)
 mouseCanvas(canvas2)
@@ -157,6 +189,7 @@ window.addEventListener(
 	true
 ) */
 
+// для центрирования канваса (почемуто все ломается если убрать)
 const center = canvas.getCenter()
 
 const centerPoint = new fabric.Point(center.left, center.top)
@@ -166,13 +199,15 @@ canvas.zoomToPoint(centerPoint, 1)
 canvas.requestRenderAll()
 }
 
-
+// настройка первначального зума для канваса
 zoomToCanvas(canvas)
 zoomToCanvas(canvas1)
 zoomToCanvas(canvas2)
 
+// массив иконок оперативников
 const opIcon = document.querySelectorAll('#opicon')
 
+// Переменная для отслеживания активного канваса
 let isActive = [false,false,false];
 
 
@@ -194,9 +229,9 @@ let isActive = [false,false,false];
 	})
 }) */
 
-
+// функция для добавления иконок оперов на канвас
 function addOpIcon(canvas, element) {
-			console.log(element)
+			//console.log(element)
 			fabric.Image.fromURL(element.getAttribute('src'), img => {
 				canvas.add(img)
 				canvas.centerObject(img)
@@ -210,14 +245,19 @@ function addOpIcon(canvas, element) {
 addOpIcon(canvas1)
 addOpIcon(canvas2) */
 
-
+// массив из контейнеров канваса
 const canvasArr = document.querySelectorAll('.canvas-container')
 
+
+//вызыв функции для скрытия всех канвасов
 hideCanvas()
 
-const layerBtn = document.querySelectorAll('.layer')
-console.log(layerBtn)
 
+//
+const layerBtn = document.querySelectorAll('.layer')
+//console.log(layerBtn)
+
+// По умолчанию скрывает все канвасы
 function hideCanvas(){
 	canvasArr.forEach((element,i) => {
 		element.style = 'display:none'
@@ -226,6 +266,7 @@ function hideCanvas(){
 	
 }
 
+// при клике на этаж скрывает все канвасы и активирует нужный канвас
 function activeCanvas(){
 	canvasArr[0].style = 'display:block	'
 	isActive[0]=true
@@ -235,8 +276,9 @@ function activeCanvas(){
 		element.addEventListener('click',()=>{
 			hideCanvas()
 
-			console.log(i)
-			isActive[i]=true
+		//	console.log(i)
+			isActive[i]=
+		//	console.log(canvasArr[i])
 			canvasArr[i].style = 'display:block	'
 		})
 	})
@@ -244,6 +286,8 @@ function activeCanvas(){
 
 activeCanvas()
 
+
+// Очищает канвас от объектов и free draw
 function clearCanvas(){
 
 	document.querySelector('#clear').addEventListener('click', ()=>{
@@ -275,7 +319,7 @@ function clearCanvas(){
 clearCanvas()
 
 
-
+// убирает free draw при правом клике
 function removeDrawObj(canvas){
 
 	
@@ -294,7 +338,7 @@ function removeDrawObj(canvas){
 
 
 		if(event.button === 3){
-			console.log("click")
+	//		console.log("click")
 			
 			if(canvas.getActiveObject() && canvas.getActiveObject().path){
 				//console.log(canvas.getActiveObject().path)
@@ -310,9 +354,13 @@ removeDrawObj(canvas)
 removeDrawObj(canvas1)
 removeDrawObj(canvas2)
 
+
+// непомню что делает
 canvas.getContext('2d', { willReadFrequently: true });
 
 
+
+// функция Drag and Drop(нужен рефактор)
 function dragDrop(canvas,num){
 
 /* 
@@ -354,7 +402,7 @@ function handleDrop(e) {
 
     var img = document.querySelector('#images img.img_dragging');
 
-    console.log('event: ', e);
+   // console.log('event: ', e);
 
     var newImage = new fabric.Image(img, {
         /* width: img.width,
@@ -400,3 +448,5 @@ function handleDragEnd(e) {
 dragDrop(canvas,0)
 dragDrop(canvas1,1)
 dragDrop(canvas2,2)
+
+

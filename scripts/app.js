@@ -31,7 +31,7 @@ const setBackground = (url, canvas) => {
 		canvas.backgroundImage = img
 		canvas.backgroundImage.scaleToWidth(width)
 		canvas.backgroundImage.scaleToHeight(height)
-		canvas.setDimensions({ width: width-document.querySelector(".workspace__sidebar").offsetWidth, height: height-document.querySelector('.header').offsetHeight })
+		canvas.setDimensions({ width: width-document.querySelector(".workspace__sidebar").offsetWidth, height: height })
 		canvas.backgroundImage.center()
 		canvas.requestRenderAll()
 	})
@@ -145,15 +145,16 @@ function mouseCanvas(canvas){
 				canvas.setCursor('grabbing')
 			}
 		}
+		canvas.forEachObject(function(o){ o.hasBorders = o.hasControls = false;
+			 
+		});
+		canvas.renderAll();
 	})
 	// При отжатия кнопки выключается режим pan
 	canvas.on('mouse:up', event => {
 		mousePressed = false
 		middleClick = false
-		canvas.forEachObject(function(o){ o.hasBorders = o.hasControls = false;
-			 
-		});
-		canvas.renderAll();
+		
 	})
 
 	// Зум канваса
@@ -405,8 +406,8 @@ function handleDrop(e) {
    // console.log('event: ', e);
 
     var newImage = new fabric.Image(img, {
-        /* width: img.width,
-        height: img.height, */
+        /* scaleX: 1,
+        scaleY: 1, */
         // Set the center of the new object based on the event coordinates relative
         // to the canvas container.
         left: e.layerX,
@@ -450,3 +451,122 @@ dragDrop(canvas1,1)
 dragDrop(canvas2,2)
 
 
+
+
+// Сохранение канваса
+
+let savedContend;
+
+function saveCanvas(canvas){
+	document.querySelector("#save").addEventListener('click', ()=>{
+		savedContend = JSON.stringify(canvas)
+	})
+	document.querySelector("#load").addEventListener('click', ()=>{
+		
+		canvas.loadFromJSON(savedContend)
+	})
+
+}
+
+saveCanvas(canvas)
+
+
+
+// Attack Defence sidebar
+
+
+hideSidebar()
+
+function hideSidebar(){
+
+	document.querySelectorAll(".workspace__sidebar-select")[1].classList.add('hide')
+
+	document.querySelectorAll("#op-side").forEach((elem, i) => {
+		elem.addEventListener("click", ()=>{
+
+			document.querySelectorAll(".workspace__sidebar-select").forEach((elem)=>{
+				elem.classList.add('hide')
+				
+			})
+
+			modalBox.forEach((e)=>{
+				e.classList.add('hide')
+			})
+
+			document.querySelectorAll(".workspace__sidebar-select")[i].classList.remove('hide')
+			modalBox[i].classList.remove('hide')
+			//console.log(elem, document.querySelectorAll(".workspace__sidebar-select")[i])
+	})
+	
+	
+		
+	})
+
+
+	
+}
+
+
+// Modal
+
+const modal = document.querySelector(".modal")
+const modalBox = document.querySelectorAll(".modal__box")
+const opicon = document.querySelectorAll("#opicon")
+
+/* modalBox.forEach((elem)=>{
+	elem.setAttribute('width','75px')
+}) */
+
+openModal()	
+
+let activeOp;
+
+function openModal(){
+
+	
+
+	opicon.forEach((e)=>{
+		e.addEventListener("click", ()=>{
+			modal.classList.remove('hide')
+			console.log(e)
+			activeOp=e
+			
+	})
+	})
+
+	/* modal.addEventListener('click',()=>{
+		closeModal()	
+	}) */
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			closeModal()
+		}
+	}
+}
+
+function closeModal(){
+	modal.classList.add('hide')
+}
+
+
+const attack = document.querySelector('#attack-choose')
+const defence = document.querySelector('#defence-choose')
+
+function swapOp(){
+	
+}
+changeOp(attack)
+changeOp(defence)
+
+function changeOp(side){
+	side.querySelectorAll("img").forEach((elem, i)=>{
+		elem.addEventListener("click",()=>{
+			console.log(elem.getAttribute('src'))
+			activeOp.setAttribute('src',elem.getAttribute('src'))
+			closeModal()
+			opicon.forEach((e)=>{
+				e.setAttribute('width','75px')
+			})
+		})
+	})
+}

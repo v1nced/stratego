@@ -18,7 +18,8 @@ body {
 .header__tools {
   margin: 0 15px;
 }
-.header .btn {
+
+.btn {
   background-color: #ea4c89;
   border-radius: 8px;
   border-style: none;
@@ -45,16 +46,18 @@ body {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-.header .btn:hover {
+.btn:hover {
   background-color: #f082ac;
 }
-.header .layer-tool {
+
+.layer-tool {
   background-color: #dfdf0d;
 }
-.header .layer-tool:hover {
+.layer-tool:hover {
   background-color: #e9e975;
 }
-.header .btn-toggle {
+
+.btn-toggle {
   background-color: #6c6969;
 }
 
@@ -71,7 +74,7 @@ body {
 }
 .workspace__sidebar {
   position: absolute;
-  background-color: #a8a8a8;
+  background-color: #767575;
   right: 1.5%;
   top: 1.5%;
 }
@@ -90,6 +93,18 @@ body {
 .workspace__sidebar-select img {
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+.tool-panel {
+  position: absolute;
+  bottom: 0;
+  /* left: 0;
+  right: 0 */
+  margin: 0 auto;
+  background-color: #767575;
+  padding: 10px 30px;
+  text-align: center;
+  display: inline;
 }
 
 .hide {

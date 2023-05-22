@@ -356,7 +356,7 @@ the canvas container.
 
 		// console.log('event: ', e);
 		//console.log(img.getAttribute('id'))
-		checkObjId(img.getAttribute('id'))
+		checkObjId(img.getAttribute('id'),canvas)
 
 		canvas.remove(objid)
 		//const [first, second] = checkObjId(img.getAttribute('id'))
@@ -366,14 +366,26 @@ the canvas container.
 			//canvas.remove(second)
 		} */
 
+		var pointer = canvas.getPointer(e)
+		console.log(pointer)
+
+
+
 		var newImage = new fabric.Image(img, {
+
+			
 			/* scaleX: 1,
         scaleY: 1, */
 			// Set the center of the new object based on the event coordinates relative
 			// to the canvas container.
-			left: e.layerX,
-			top: e.layerY,
+			
+
+			/* left: x - img.width/2,
+			top: y - img.height/2	, */
+			left:pointer.x - img.offsetWidth/2,
+			top:pointer.y - img.offsetHeight/2,
 			id: img.id,
+			centeredScaling: true,	
 		})
 		canvas.add(newImage)
 		//console.log(newImage.id)
@@ -509,14 +521,15 @@ function changeOp(side) {
 		})
 	})
 }
+
 let objid
-//setTimeout(checkObjId, 8000)
-function checkObjId(num) {
+
+function checkObjId(num,canvas) {
 	canvas.forEachObject(e => {
 		if (num == e.id) {
 			//	console.log(e)
 			objid = e
-			return e
+			
 		}
 	})
 }

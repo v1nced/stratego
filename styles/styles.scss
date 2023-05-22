@@ -20,50 +20,54 @@ body {
 		margin: 0 15px;
 	}
 
-	.btn {
-		background-color: #ea4c89;
-		border-radius: 8px;
-		border-style: none;
-		box-sizing: border-box;
-		color: #ffffff;
-		cursor: pointer;
-		display: inline-block;
-		font-family: 'Haas Grot Text R Web', 'Helvetica Neue', Helvetica, Arial,
-			sans-serif;
-		font-size: 14px;
-		font-weight: 500;
-		height: 40px;
-		line-height: 20px;
-		list-style: none;
-		margin: 0;
-		outline: none;
-		padding: 10px 16px;
-		position: relative;
-		text-align: center;
-		text-decoration: none;
-		transition: color 100ms;
-		vertical-align: baseline;
-		user-select: none;
-		-webkit-user-select: none;
-		touch-action: manipulation;
+	
+}
 
-		&:hover {
-			background-color: #f082ac;
-		}
-	}
 
-	.layer-tool {
-		background-color: #dfdf0d;
+.btn {
+	background-color: #ea4c89;
+	border-radius: 8px;
+	border-style: none;
+	box-sizing: border-box;
+	color: #ffffff;
+	cursor: pointer;
+	display: inline-block;
+	font-family: 'Haas Grot Text R Web', 'Helvetica Neue', Helvetica, Arial,
+		sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	height: 40px;
+	line-height: 20px;
+	list-style: none;
+	margin: 0;
+	outline: none;
+	padding: 10px 16px;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	transition: color 100ms;
+	vertical-align: baseline;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
 
-		&:hover {
-			background-color: #e9e975;
-		}
-	}
-
-	.btn-toggle {
-		background-color: #6c6969;
+	&:hover {
+		background-color: #f082ac;
 	}
 }
+
+.layer-tool {
+	background-color: #dfdf0d;
+
+	&:hover {
+		background-color: #e9e975;
+	}
+}
+
+.btn-toggle {
+	background-color: #6c6969;
+}
+
 
 .workspace {
 	display: flex;
@@ -82,7 +86,7 @@ body {
 	&__sidebar {
 		position: absolute;
 		//   display: flex;
-		background-color: #a8a8a8;
+		background-color: #767575;
 		right: 1.5%;
 		top: 1.5%;
 	}
@@ -106,6 +110,20 @@ body {
 		}
 	}
 }
+
+
+.tool-panel{
+	position: absolute;
+	bottom: 0;
+	/* left: 0;
+	right: 0 */;
+	margin: 0 auto;
+	background-color: #767575;
+	padding: 10px 30px;
+	text-align: center;
+	display: inline;
+}
+
 
 .hide {
 	display: none;
